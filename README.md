@@ -54,6 +54,8 @@ Several elements need to be taken care of on order:
 - on step #2 use `conda install pytorch cudatoolkit=11.3 torchvision -c pytorch`
 
 # Frequent used Commands
+- sudo apt update
+- sudo apt install gedit -y
 - stat <foldername> 
 - sudo chown -R <username> <folder>
 - sudo apt-get --purge -y remove 'cuda*'
