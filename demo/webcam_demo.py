@@ -33,6 +33,7 @@ def main():
     print('Press "Esc", "q" or "Q" to exit.')
     while True:
         ret_val, img = camera.read()
+        cv2.imshow('frame', img)
         result = inference_detector(model, img)
 
         ch = cv2.waitKey(1)
