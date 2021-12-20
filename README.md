@@ -31,17 +31,26 @@ Several elements need to be taken care of on order:
     - On step 4.2.6 (Using the WSL-Ubuntu Package) use these commands instead [WSL Cuda 11.3](https://developer.nvidia.com/cuda-11.3.0-download-archive?target_os=Linux&target_arch=x86_64&Distribution=WSL-Ubuntu&target_version=2.0&target_type=deb_local):
 
     `wget https://developer.download.nvidia.com/compute/cuda/repos/wsl-ubuntu/x86_64/cuda-wsl-ubuntu.pin
+
     sudo mv cuda-wsl-ubuntu.pin /etc/apt/preferences.d/cuda-repository-pin-600
+
     wget https://developer.download.nvidia.com/compute/cuda/11.3.0/local_installers/cuda-repo-wsl-ubuntu-11-3-local_11.3.0-1_amd64.deb
+
     sudo dpkg -i cuda-repo-wsl-ubuntu-11-3-local_11.3.0-1_amd64.deb
+
     sudo apt-key add /var/cuda-repo-wsl-ubuntu-11-3-local/7fa2af80.pub
+
     sudo apt-get update
+
     sudo apt-get -y install cuda`
 - Update .bashrc (located under home/<user>) and add following lines
 
     `#CUDA LOCATION FROM WSL
+
     export LD_LIBRARY_PATH="/usr/local/cuda-11.3/lib64:$LD_LIBRARY_PATH"
+
     export PATH="/usr/local/cuda-11.3/bin:$PATH"
+
     export CUDA_HOME=/usr/local/cuda-11.3`
 - run `source .bashrc`
 - Install conda
@@ -52,6 +61,11 @@ Several elements need to be taken care of on order:
 ## MMDetection conda installation  
 - Follow steps on the [set up guide](https://mmdetection.readthedocs.io/en/v2.19.0/get_started.html#installation)
 - on step #2 use `conda install pytorch=1.10.0 cudatoolkit=11.3 torchvision -c pytorch`
+
+## Copy dataset
+
+- `cp -R /mnt/c/Users/johan/Downloads/val2017/val2017 ~/aigri_projects/mmdetection_sandbox/data/coco`
+- `cp -R /mnt/c/Users/johan/Downloads/annotations_trainval2017/annotations ~/aigri_projects/mmdetection_sandbox/data/coco`
 
 ## Export to tensor RT
 ## Export to ONNX
@@ -71,6 +85,7 @@ Several elements need to be taken care of on order:
 
 # Frequent used Commands
 - sudo apt update
+- sudo apt upgrade
 - sudo apt install gedit -y
 - stat <foldername> 
 - sudo chown -R <username> <folder>
@@ -86,3 +101,4 @@ Several elements need to be taken care of on order:
 - conda create
 - conda activate
 - conda deactivate
+- nvcc --version
