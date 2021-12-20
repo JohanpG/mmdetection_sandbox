@@ -51,7 +51,23 @@ Several elements need to be taken care of on order:
 
 ## MMDetection conda installation  
 - Follow steps on the [set up guide](https://mmdetection.readthedocs.io/en/v2.19.0/get_started.html#installation)
-- on step #2 use `conda install pytorch cudatoolkit=11.3 torchvision -c pytorch`
+- on step #2 use `conda install pytorch=1.10.0 cudatoolkit=11.3 torchvision -c pytorch`
+
+## Export to tensor RT
+## Export to ONNX
+- pip install onnx onnxruntime-gpu
+- Current version of mmdetection does not support onnxruntime-gpu>= 1.9.0 (But since we are using CUDA Toolkit 11.3 and that is supported on > 1.9.0) so a small tweak is needed:
+    - Modify file '/home/johan/miniconda3/envs/openmmlab/lib/python3.7/site-packages/mmdet/core/export/model_wrappers.py"
+        - Comment lines 115 y 123
+        add 'sess = ort.InferenceSession(onnx_file, session_options, providers=providers)' on line 124
+
+## Covert to TensorRT
+- Donwload deb file https://developer.nvidia.com/nvidia-tensorrt-8x-download
+- Follow [Guide](https://docs.nvidia.com/deeplearning/tensorrt/install-guide/index.html)
+- PIP Wheel
+    - python3 -m pip install --upgrade setuptools pip
+    - python3 -m pip install nvidia-pyindex
+    - python3 -m pip install --upgrade nvidia-tensorrt
 
 # Frequent used Commands
 - sudo apt update

@@ -1,0 +1,15 @@
+name: mmdetection
+channels:
+  - conda-forge
+  - pytorch
+  - esri
+  - defaults
+dependencies:
+  - python=3.7
+  - pytorch=1.10
+  - torchvision=0.11.0
+  - cudatoolkit=11.3
+  - gcc
+  - mmcv-full
+  #- pip:
+  #  - mmcv-full -f https://download.openmmlab.com/mmcv/dist/cu111/torch1.9.0/index.html
