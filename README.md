@@ -82,6 +82,25 @@ Several elements need to be taken care of on order:
     - python3 -m pip install --upgrade setuptools pip
     - python3 -m pip install nvidia-pyindex
     - python3 -m pip install --upgrade nvidia-tensorrt
+    
+# Using MMDET on the GPU Cluster with singularity
+## Loading Modules
+    - `module load anaconda3`
+    - `module load cuda-10.2`
+    - `module load singularity-3.6.4`
+    - `conda create -n openmmlabjp python=3.7 -y`
+
+conda activate openmmlabjp
+
+conda install pytorch==1.8.0 torchvision==0.9.0 torchaudio==0.8.0 cudatoolkit=10.2 -c pytorch
+
+pip install mmcv-full -f https://download.openmmlab.com/mmcv/dist/cu102/ torch1.8.0/index.html
+
+conda install -c anaconda ipykernel
+
+python -m ipykernel install --user --name=openmmlabjp
+
+sbatch conda_singularity.sh
 
 # Frequent used Commands
 - sudo apt update
